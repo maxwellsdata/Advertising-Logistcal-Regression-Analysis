@@ -35,3 +35,18 @@ from sklearn.model_selection import train_test_split
 X = ad_data[['Daily Time Spent on Site', 'Age', 'Area Income','Daily Internet Usage', 'Male']]
 y = ad_data['Clicked on Ad']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
+
+#TRAIN AND FIT A LOGISTIC REGRESSION FROM THE TRAINING DATA
+
+from sklearn.linear_model import LogisticRegression
+logmodel = LogisticRegression()
+logmodel.fit(X_train,y_train)
+
+#NOW WE CAN PREDICT NEW VALUES
+
+predictions = logmodel.predict(X_test)
+
+#CREATE A CLASSIFICATION REPORT
+
+from sklearn.metrics import classification_report
+print(classification_report(y_test,predictions))
